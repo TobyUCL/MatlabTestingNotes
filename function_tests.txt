@@ -1,0 +1,31 @@
+How to unit test a function. Based on (https://uk.mathworks.com/help/matlab/matlab_prog/write-function-based-unit-tests-.html)
+
+I (matlab) have written a function which solves quadratic equations, it's called:
+	quadraticSolver.m
+
+How do I know that it actually works though? Unit testing.
+The tests are written in the testfile:
+	tests/quadraticSolver_test.m
+
+TESTFILES:
+Function testfiles comprise of a series of functions, the first function is always
+
+function tests = functionName_test
+addpath(genpath("PathToFunction")) 
+tests = functiontests(localfunctions); %This accesses all of the test functions local to this script.
+end
+
+After this come the unit tests, all unit test functions MUST start with "test":
+
+function test_1(testCase)
+actSolution = function(sample_input);
+expSolution = expected_output;
+verifyEqual(testCase,actSolution,expSolution)
+end
+
+
+RUN THE TESTS:
+To run the tests go to the testfile and either type:
+	runtests('quadraticSolver_test.m')
+or press the Run Tests the button in the Editor tab of the IDE
+
